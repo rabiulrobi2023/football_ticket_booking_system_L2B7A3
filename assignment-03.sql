@@ -45,7 +45,7 @@ CREATE TABLE Bookings (
 )
 
 
---  Get All Tables Data============================================
+-- 🔎 Get All Tables Data============================================
 SELECT * FROM users;
 
 SELECT * FROM matches;
@@ -55,7 +55,7 @@ SELECT * FROM bookings;
 -- =============================================================================
 --                       PART-02
 -- =============================================================================
--- Query-1======================================================================
+-- 🔎 Query-1======================================================================
 SELECT
 	match_id,
 	fixture,
@@ -66,7 +66,7 @@ WHERE
 	tournament_category = 'Champions League'
 	AND match_status = 'Available';
 
--- Query-2======================================================================
+-- 🔎 Query-2======================================================================
 SELECT
     user_id,
     full_name,
@@ -77,7 +77,7 @@ WHERE
     full_name ILIKE 'Tanvir%'
     OR full_name ILIKE '%Haque%'
 
--- Query-3======================================================================
+-- 🔎 Query-3======================================================================
 SELECT
     booking_id,
     user_id,
@@ -88,7 +88,7 @@ FROM
 WHERE
     payment_status IS NULL;
 
--- Query 4 ======================================================================
+-- 🔎 Query 4 ======================================================================
 SELECT
     booking_id,
     full_name,
@@ -99,7 +99,7 @@ FROM
     JOIN users USING (user_id)
     JOIN matches USING (match_id);
 
--- Query 5 ======================================================================
+-- 🔎 Query 5 ======================================================================
 SELECT
     user_id,
     full_name,
@@ -108,7 +108,7 @@ FROM
     users
     FULL JOIN bookings USING (user_id);
 
--- Query 6 ======================================================================
+-- 🔎 Query 6 ======================================================================
 SELECT
     booking_id,
     match_id,
@@ -121,4 +121,18 @@ WHERE
             AVG(total_cost)
         FROM
             bookings
-    )
+    );
+
+-- 🔎 Query 7 ======================================================================
+SELECT
+    match_id,
+    fixture,
+    base_ticket_price
+FROM
+    matches
+ORDER BY
+    base_ticket_price DESC
+OFFSET
+    1
+LIMIT
+    2;
