@@ -87,3 +87,38 @@ FROM
     bookings
 WHERE
     payment_status IS NULL;
+
+-- Query 4 ======================================================================
+SELECT
+    booking_id,
+    full_name,
+    fixture,
+    total_cost
+FROM
+    bookings
+    JOIN users USING (user_id)
+    JOIN matches USING (match_id);
+
+-- Query 5 ======================================================================
+SELECT
+    user_id,
+    full_name,
+    booking_id
+FROM
+    users
+    FULL JOIN bookings USING (user_id);
+
+-- Query 6 ======================================================================
+SELECT
+    booking_id,
+    match_id,
+    total_cost
+FROM
+    bookings
+WHERE
+    total_cost > (
+        SELECT
+            AVG(total_cost)
+        FROM
+            bookings
+    )
