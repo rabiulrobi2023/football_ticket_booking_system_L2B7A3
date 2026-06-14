@@ -1,11 +1,15 @@
--- ⚠️======================Delete Tables=====================
+-- =========================================================
+--                       PART-01
+-- =========================================================
+
+-- ⚠️Delete Tables==========================================
 DROP TABLE IF EXISTS Bookings;
 
 DROP TABLE IF EXISTS Matches;
 
 DROP TABLE IF EXISTS Users;
 
--- ======================Create Tables======================
+-- Create Tables============================================
 CREATE TABLE Users (
     user_id serial PRIMARY KEY,
     full_name VARCHAR(50) NOT NULL,
@@ -18,7 +22,7 @@ CREATE TABLE Matches (
     match_id serial PRIMARY KEY,
     fixture VARCHAR(50) NOT NULL,
     tournament_category VARCHAR(50) NOT NULL,
-    base_ticket_price DECIMAL(10, 2) CHECK (base_ticket_price >= 0) NOT NULL,
+    base_ticket_price INT CHECK (base_ticket_price >= 0) NOT NULL,
     match_status VARCHAR(30) NOT NULL CHECK (
         match_status IN (
             'Available',
@@ -37,5 +41,13 @@ CREATE TABLE Bookings (
     payment_status VARCHAR(10) CHECK (
         payment_status IN ('Pending', 'Confirmed', 'Cancelled', 'Refunded')
     ),
-    total_cost DECIMAL(10, 2) CHECK (total_cost >= 0) NOT NULL
+    total_cost INT CHECK (total_cost >= 0) NOT NULL
 )
+
+
+--  Get All Tables Data============================================
+SELECT * FROM users;
+
+SELECT * FROM matches;
+
+SELECT * FROM bookings;
